@@ -1,0 +1,21 @@
+[
+
+  {
+    "Id": "692308324",
+    "FirstName": "Ahmadjon",
+    "LastName": "Sirojiddinov",
+    "Age": 20,
+    "Course": 3,
+    "PhoneNum": "9873201",
+    "Email": "dsa@gmail.com"
+  },
+  {
+    "Id": "272779760",
+    "FirstName": "Ahmadjon",
+    "LastName": "Sirojiddinov",
+    "Age": 20,
+    "Course": 3,
+    "PhoneNum": "123456",
+    "Email": "a@gmail.com"
+  }
+]
