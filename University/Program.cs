@@ -166,6 +166,7 @@ namespace University
             }
             else if (studentmenu == 7)
             {
+                Console.Clear();
                 Console.WriteLine("\tXIZMATIMIZDAN FOYDALANGANINGIZDAN MAMNINMIZ!!!");
                 Environment.Exit(0);
             }
