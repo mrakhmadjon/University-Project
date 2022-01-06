@@ -138,6 +138,10 @@ namespace University.Repositories
             return false;
         }
 
+        /// <summary>
+        /// This returns the count of the students 
+        /// </summary>
+        /// <returns></returns>
         public int GetCountOfStudents()
         {
             GetAllstudents();
