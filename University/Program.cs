@@ -142,12 +142,35 @@ namespace University
             }
             else if (studentmenu == 6)
             {
-                studentRepository.OptimalSearch();
+                bool isStudentSearchWorked = studentRepository.OptimalSearch();
+                if (isStudentSearchWorked)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\tSiz Qidirgan parameter bo'yicha o'quvchi yoki o'quvchilar ");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                    studentmenu = StudentMenu.StudentEntryMenu();
+
+                    goto Student_menu;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bazada bunday parameterdagi o'quvchi yo'q...");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    studentmenu = StudentMenu.StudentEntryMenu();
+
+                    goto Student_menu;
+                }
             }
             else if (studentmenu == 7)
+            {
+                Console.WriteLine("\tXIZMATIMIZDAN FOYDALANGANINGIZDAN MAMNINMIZ!!!");
                 Environment.Exit(0);
+            }
 
-           
+
 
 
             /*

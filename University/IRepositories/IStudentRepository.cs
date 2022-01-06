@@ -18,7 +18,7 @@ namespace University.IRepositories
         
       bool GetAllStudentsList();
          
-      void OptimalSearch();
+      bool OptimalSearch();
         
     }
 }
