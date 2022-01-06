@@ -15,10 +15,10 @@ namespace University.IRepositories
       bool UpdateStudent();
         
       int GetCountOfStudents();
-        /*
-      void GetAllStudentsList();
-
+        
+      bool GetAllStudentsList();
+         
       void OptimalSearch();
-        */
+        
     }
 }

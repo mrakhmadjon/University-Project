@@ -122,7 +122,28 @@ namespace University
                     goto Student_menu;
                 }
                 }
+            else if (studentmenu == 5)
+            {
+                bool printedAllStudents = studentRepository.GetAllStudentsList();
+                if (printedAllStudents)
+                {
+                    Console.WriteLine();
+                    studentmenu = StudentMenu.StudentEntryMenu();
 
+                    goto Student_menu;
+                }
+                else
+                {
+                    Console.WriteLine("Bazada Oq'uvchilar yo'q");
+                    studentmenu = StudentMenu.StudentEntryMenu();
+
+                    goto Student_menu;
+                }
+            }
+            else if (studentmenu == 6)
+            {
+                studentRepository.OptimalSearch();
+            }
             else if (studentmenu == 7)
                 Environment.Exit(0);
 

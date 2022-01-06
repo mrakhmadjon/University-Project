@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -104,6 +105,8 @@ namespace University.Repositories
             Console.WriteLine("Email : ");
             string email = Console.ReadLine().Trim();
 
+
+             
             foreach (Student student in students)
             {
                 if (student.PhoneNum == phonenum && student.Email == email)
@@ -112,6 +115,7 @@ namespace University.Repositories
                     return  true;
                 }
             }
+             
             return false;
         }
 
@@ -147,21 +151,57 @@ namespace University.Repositories
             GetAllstudents();
             return GetAllstudents().Count();
         }
-        /*
-        public void GetAllStudentsList()
+        
+        public bool GetAllStudentsList()
         {
-            throw new NotImplementedException();
+            var allStudents = GetAllstudents();
+
+            IEnumerable sortedStudents = allStudents.OrderBy(student => student.FirstName).ThenBy(x => x.PhoneNum);
+
+            if (sortedStudents.ToString().Length != 0)
+            {
+                Console.Clear();
+                Console.WriteLine("\tBazadagi o'quvchilar \n");
+                foreach (Student student in sortedStudents)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"\n Id : {student.Id} FirstName : {student.FirstName} LastName : {student.LastName} Age : {student.Age} Email : {student.Email} PhoneNumber : {student.PhoneNum}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                return true;
+            }
+            return false ;
         }
 
-        
+         
 
         public void OptimalSearch()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Qidirmoqchi bo'lgan student parametrini kiriting : ");
+            string optimalSearch = Console.ReadLine().Trim();
+            var searchStudents = GetAllstudents();
+
+           IList<Student> seachedStudents =  searchStudents.Where(student => student.Email.Equals(searchStudents) || student.FirstName.Equals(optimalSearch)
+            || student.LastName.Equals(optimalSearch) || student.Age.ToString().Equals(optimalSearch) || student.PhoneNum.Equals(optimalSearch)
+            || student.Course.ToString().Equals(optimalSearch)).ToList();
+
+            if (seachedStudents.ToString().Length != 0)
+            {
+                Console.Clear();
+                Console.WriteLine("\tSiz Qidirgan parameter bo'yicha o'quvchi yoki o'quvchilar ");
+                foreach (Student student in seachedStudents)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"\n Id : {student.Id} FirstName : {student.FirstName} LastName : {student.LastName} Age : {student.Age} Email : {student.Email} PhoneNumber : {student.PhoneNum}");
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
         }
 
+
         
-        */
 
 
 
