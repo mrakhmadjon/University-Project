@@ -172,14 +172,6 @@ namespace University
             }
 
 
-
-
-            /*
-            string word = "SALOM";
-            Console.WriteLine(word.Cap());
-
-            Console.WriteLine(word.ArrToString());
-            */
         }
 
 
