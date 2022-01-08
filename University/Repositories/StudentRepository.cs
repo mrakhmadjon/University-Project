@@ -90,7 +90,7 @@ namespace University.Repositories
                     existStudents.Remove(student);
                     
                     WriteAllStudents(existStudents);
-                    CreateStudent();
+                    CreateStudent(GetInfoFromUser.GetInfoOfStudent());
 
                     return true;
                 }

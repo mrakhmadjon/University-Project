@@ -11,9 +11,9 @@ namespace University.IRepositories
     {
       Student CreateStudent(Student student);
       bool DeleteStudent();
-     
+      
       bool UpdateStudent();
-        
+      
       int GetCountOfStudents();
         
       bool GetAllStudentsList();
