@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using University.Repositories;
+using University.Service;
 
 namespace University.Menus
 {
     internal class StudentMenu
     {
-        public static int StudentEntryMenu()
+        public static void StudentEntryMenu()
         {
+
             Start:
             Console.WriteLine("1: O'quvchini bazaga kiritish");
             Console.WriteLine("2: O'quvchini bazadan o'chirish");
@@ -30,8 +32,11 @@ namespace University.Menus
                 goto Start;
             }
             
-
-            return int.Parse(option.Key.ToString());
+            StudentRepository studentRepository = new StudentRepository();
+            if(option.KeyChar == '1')
+            {
+                studentRepository.CreateStudent(GetInfoFromUser.GetInfoOfStudent());
+            }
             
         }
     }

@@ -72,7 +72,82 @@ namespace University.Service
 
                 return isLogged;
 
-            
         }
+
+        public static Student GetInfoOfStudent()
+        {
+            Console.Clear();
+            Console.WriteLine("O'quvchi MAlumotlarni Kiriting ");
+            var students = StudentRepository.GetAllstudents();
+            Student student = new Student();
+
+            Console.WriteLine("FirstName : ");
+            student.FirstName = Console.ReadLine().Trim().Cap();
+
+            Console.WriteLine("LastName : ");
+            student.LastName = Console.ReadLine().Trim().Cap();
+
+        AgeGoto:
+            Console.WriteLine("Age : ");
+            string age = Console.ReadLine().Trim();
+
+            if (MethodService.IsNumeric(age) && age.Length != 0)
+            {
+
+                student.Age = int.Parse(age);
+
+            }
+            else
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Age ni to'gri formatda kiriting ...");
+                Console.ForegroundColor = ConsoleColor.White;
+                goto AgeGoto;
+            }
+            Console.WriteLine("Course : ");
+            student.Course = int.Parse(Console.ReadLine().Trim());
+
+            Console.WriteLine("Email : ");
+            student.Email = Console.ReadLine().Trim();
+
+        Start:
+            Console.WriteLine("Phone Number : ");
+            student.PhoneNum = Console.ReadLine().Trim();
+
+
+            
+
+            foreach (Student studentt in students)
+            {
+                if (studentt.PhoneNum == student.PhoneNum)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Siz kiritgan Telefon nomer band qilingan boshqa telefon kiriting !");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    goto Start;
+
+
+                }
+            }
+
+            return student;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

@@ -48,7 +48,8 @@ namespace University.Repositories
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Successfully Created the Account !");
             Console.ForegroundColor = ConsoleColor.White;
-            
+            StudentMenu.StudentEntryMenu();
+
             return user;
         }
 

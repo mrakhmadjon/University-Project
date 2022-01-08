@@ -9,7 +9,7 @@ namespace University.IRepositories
 {
     internal interface IStudentRepository
     {
-      Student CreateStudent();
+      Student CreateStudent(Student student);
       bool DeleteStudent();
      
       bool UpdateStudent();

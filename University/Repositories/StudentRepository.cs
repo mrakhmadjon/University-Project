@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using University.Extension;
 using University.IRepositories;
+using University.Menus;
 using University.Models;
 using University.Service;
 
@@ -15,7 +16,7 @@ namespace University.Repositories
 {
     internal class StudentRepository : IStudentRepository
     {
-        public IList<Student> GetAllstudents()
+        public static IList<Student> GetAllstudents()
         {
             string json = File.ReadAllText(Constants.StudentDbPath);
             return JsonConvert.DeserializeObject<IList<Student>>(json);
@@ -28,66 +29,21 @@ namespace University.Repositories
             string jsonStudents = JsonConvert.SerializeObject(students);
             File.WriteAllText(Constants.StudentDbPath, jsonStudents);
         }
-        public Student CreateStudent()
+
+        public Student CreateStudent(Student student)
         {
-            Console.Clear();
-            Console.WriteLine("O'quvchi MAlumotlarni Kiriting ");
-            var students = GetAllstudents();
-            Student student = new Student();
-
-            Console.WriteLine("FirstName : ");
-            student.FirstName = Console.ReadLine().Trim().Cap();
-
-            Console.WriteLine("LastName : ");
-            student.LastName = Console.ReadLine().Trim().Cap();
-
-            AgeGoto:
-            Console.WriteLine("Age : ");
-            string age = Console.ReadLine().Trim();
-           
-            if (MethodService.IsNumeric(age) && age.Length != 0)
-            {
-                
-              student.Age = int.Parse(age);
-                
-            }
-            else
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Age ni to'gri formatda kiriting ...");
-                Console.ForegroundColor = ConsoleColor.White;
-                goto AgeGoto;
-            }
-            Console.WriteLine("Course : ");
-            student.Course = int.Parse(Console.ReadLine().Trim());
-
-            Start:
-            Console.WriteLine("Phone Number : ");
-            student.PhoneNum = Console.ReadLine().Trim();
-
             
-            Console.WriteLine("Email : ");
-            student.Email = Console.ReadLine().Trim();
-
-            foreach (Student studentt in students)
-            {
-                if (studentt.PhoneNum == student.PhoneNum)
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Siz kiritgan Telefon nomer band qilingan boshqa telefon kiriting !");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    goto Start;
-
-
-                }
-            }
+            var students = GetAllstudents();
+            
             students.Add(student);
 
 
             WriteAllStudents(students);
 
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Student Bazaga Muvaffaqiyatli Qo'shildi");
+            Console.ForegroundColor = ConsoleColor.White;
+            StudentMenu.StudentEntryMenu();
             return new Student();
         }
 
