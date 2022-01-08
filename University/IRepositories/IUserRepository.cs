@@ -9,9 +9,9 @@ namespace University.IRepositories
 {
     public interface IUserRepository
     {
-        User Signup ();
+        User Signup (User user);
 
-        bool Login ();
+        void Login (bool isLogged);
 
          
     }

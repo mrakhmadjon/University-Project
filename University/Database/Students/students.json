@@ -1,39 +1,21 @@
 [
-
+  
   {
-    "Id": "692308324",
+    "Id": "297521820",
+    "FirstName": "Ali",
+    "LastName": "Zairov",
+    "Age": 12,
+    "Course": 2,
+    "PhoneNum": "213",
+    "Email": "dsad"
+  },
+  {
+    "Id": "423252569",
     "FirstName": "Ahmadjon",
     "LastName": "Sirojiddinov",
     "Age": 20,
     "Course": 3,
-    "PhoneNum": "9873201",
-    "Email": "dsa@gmail.com"
-  },
-  {
-    "Id": "692308324",
-    "FirstName": "Ahmadjonaa",
-    "LastName": "Sirojiddinov",
-    "Age": 20,
-    "Course": 3,
-    "PhoneNum": "9873201",
-    "Email": "dsa@gmail.com"
-  },
-  {
-    "Id": "692308324",
-    "FirstName": "Ahmadjon",
-    "LastName": "Sirojiddinov",
-    "Age": 22,
-    "Course": 3,
-    "PhoneNum": "9873201",
-    "Email": "dsa@gmail.com"
-  },
-  {
-    "Id": "714394232",
-    "FirstName": "Das",
-    "LastName": "Dsa",
-    "Age": 1,
-    "Course": 21,
-    "PhoneNum": "21",
-    "Email": "21"
+    "PhoneNum": "+998972507282",
+    "Email": "a@gmail.com"
   }
 ]

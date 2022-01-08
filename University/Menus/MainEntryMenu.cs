@@ -4,18 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using University.Repositories;
+using University.Service;
 
 namespace University.Menus
 {
-    public  class MainEntryMenu
+    internal  class MainEntryMenu
     {
-        public static int RoleMenu()
+        public static void RoleMenu()
         {
-            Start:
-            Console.WriteLine("\t1 Sign Up\t\t2 Sign In");
-            string role = Console.ReadLine().Trim();
+            UserRepository userRepo = new UserRepository();
 
-            while(role != "1" && role != "2")
+        Start:
+            Console.WriteLine("\t1 Sign Up\t\t2 Sign In");
+            ConsoleKeyInfo role = Console.ReadKey();
+
+            while(role.KeyChar != '1' && role.KeyChar != '2')
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -23,13 +26,16 @@ namespace University.Menus
                 Console.ForegroundColor = ConsoleColor.White;
                 goto Start;
             }
-            
-            if (role == "1")
-                return 1;
+
+            if (role.KeyChar == '1')
+                userRepo.Signup(GetInfoFromUser.GetInfoForSignup());
             else
-                return 2;
-
-
+            {
+                userRepo.Login(GetInfoFromUser.GetConfirmLogin());
+            }
+                
+                
+                
         }
     }
 }

@@ -13,39 +13,15 @@ namespace University
         static void Main(string[] args)
         {
             
-        Start:
-            int EntryMenu = MainEntryMenu.RoleMenu();
-            bool isLogged = false;
-
-            UserRepository userRepo = new UserRepository();
-            int studentmenu=0;
-
-            if (EntryMenu == 1)
-            {  userRepo.Signup();
-               studentmenu = StudentMenu.StudentEntryMenu();
-            }
-            else
-            {
-                isLogged = userRepo.Login();
-                if (!isLogged)
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\t   Invalid login or Password\n");
-                    Console.ForegroundColor = ConsoleColor.White;
-
-                    goto Start;
-                }
-                else
-                {                    
-                    studentmenu = StudentMenu.StudentEntryMenu();
-                }
-            }
-
-        Student_menu:
+       
+            MainEntryMenu.RoleMenu();
+            
+       // Student_menu:
         
-            // Taking An object From StudentRepository.It include Function such as create delete etc
 
+
+            // Taking An object From StudentRepository.It include Function such as create delete etc
+            /*
             StudentRepository studentRepository = new StudentRepository();
             if (studentmenu == 1)
             {
@@ -95,7 +71,7 @@ namespace University
 
                     goto Student_menu;
                 }
-
+                
             }
             else if(studentmenu==4)
             {
@@ -171,9 +147,9 @@ namespace University
                 Environment.Exit(0);
             }
 
-
+            */
         }
-
+            
 
     }
 }

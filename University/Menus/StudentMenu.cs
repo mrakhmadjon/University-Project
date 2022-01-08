@@ -20,8 +20,8 @@ namespace University.Menus
             Console.WriteLine("6: Universal Search");
             Console.WriteLine("7: Dasturdan Chiqish");
 
-            string option = Console.ReadLine().Trim();
-            while(option != "1" && option != "2" && option != "3" && option != "4" && option != "5" && option != "6" && option != "7")
+            ConsoleKeyInfo option = Console.ReadKey();
+            while(option.KeyChar != '1' && option.KeyChar != '2' && option.KeyChar != '3' && option.KeyChar != '4' && option.KeyChar != '5' && option.KeyChar != '6' && option.KeyChar != '7')
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -31,8 +31,8 @@ namespace University.Menus
             }
             
 
-            return int.Parse(option);
-
+            return int.Parse(option.Key.ToString());
+            
         }
     }
 }

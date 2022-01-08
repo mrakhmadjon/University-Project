@@ -66,16 +66,17 @@ namespace University.Repositories
             Console.WriteLine("Phone Number : ");
             student.PhoneNum = Console.ReadLine().Trim();
 
+            
             Console.WriteLine("Email : ");
             student.Email = Console.ReadLine().Trim();
 
             foreach (Student studentt in students)
             {
-                if (studentt.PhoneNum == student.PhoneNum || studentt.Email == student.Email)
+                if (studentt.PhoneNum == student.PhoneNum)
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Siz kiritgan Telefon yoki Email band qilingan boshqa telefon yoki email kiriting !");
+                    Console.WriteLine("Siz kiritgan Telefon nomer band qilingan boshqa telefon kiriting !");
                     Console.ForegroundColor = ConsoleColor.White;
                     goto Start;
 
@@ -100,16 +101,11 @@ namespace University.Repositories
             Console.WriteLine("PhoneNumber : ");
             string phonenum = Console.ReadLine().Trim();
 
-
-
-            Console.WriteLine("Email : ");
-            string email = Console.ReadLine().Trim();
-
-
+                      
              
             foreach (Student student in students)
             {
-                if (student.PhoneNum == phonenum && student.Email == email)
+                if (student.PhoneNum == phonenum)
                 { students.Remove(student); 
                     WriteAllStudents(students);
                     return  true;
@@ -128,14 +124,18 @@ namespace University.Repositories
             Console.WriteLine("PhoneNum : ");
             string phone = Console.ReadLine().Trim();
 
-            Console.WriteLine("Email : ");
-            string email = Console.ReadLine().Trim();
+            
             var existStudents = GetAllstudents();
             foreach (Student student in existStudents)
             {
-                if (student.PhoneNum.Equals(phone) && student.Email.Equals(email))
+                if (student.PhoneNum.Equals(phone))
                 {
+                    
+                    existStudents.Remove(student);
+                    
+                    WriteAllStudents(existStudents);
                     CreateStudent();
+
                     return true;
                 }
             }
@@ -183,7 +183,7 @@ namespace University.Repositories
             var searchStudents = GetAllstudents();
 
             IList<Student> seachedStudents = searchStudents.Where(student => student.Email.Equals(searchStudents) || student.FirstName.Equals(optimalSearch)
-            || student.LastName.Equals(optimalSearch) || student.Age.ToString().Equals(optimalSearch) || student.PhoneNum.Equals(optimalSearch)
+            || student.LastName.Contains(optimalSearch) || student.Age.ToString().Equals(optimalSearch) || student.PhoneNum.Equals(optimalSearch)
             || student.Course.ToString().Equals(optimalSearch)).ToList();
 
             if (seachedStudents.ToList().Count != 0)

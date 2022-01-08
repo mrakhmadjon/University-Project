@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using University.Extension;
 using University.IRepositories;
+using University.Menus;
 using University.Models;
 using University.Service;
 
@@ -15,60 +16,30 @@ namespace University.Repositories
     public class UserRepository : IUserRepository
     {
        
-        public bool Login()
+        public void Login(bool isLogged)
         {
-            Console.Clear();
-            bool isLogged = false;
-            Console.WriteLine("Login : ");
-            string login = Console.ReadLine().Trim();
+            if (!isLogged)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\t   Invalid login or Password\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                MainEntryMenu.RoleMenu();
 
-            Console.WriteLine("Password : ");
-            string password = MethodService.HidePass();
-            password = password.HashingCode();
+            }
+            else
+            {
+                StudentMenu.StudentEntryMenu();
+            }
 
-            isLogged = MethodService.IsLoginExist(login, password);
-
-            return isLogged;
-            
         }
 
-        public User Signup()
+        public User Signup(User user)
         {
             Console.Clear();
             var users = GetAll();
            
-
-            User user = new User();
-            Console.WriteLine("FirstName : ");
-            user.FirstName = Console.ReadLine().Trim().Cap();
-
-            Console.WriteLine("LastName : ");
-            user.LastName = Console.ReadLine().Trim().Cap();
-
-            Console.WriteLine("Login : ");
-            user.Login = Console.ReadLine().Trim();
-
-            Start:
-            Console.WriteLine("Password : ");
-            string password = MethodService.HidePass();
-
-            user.Password = password.HashingCode();
-
-            foreach (User userr in users)
-            {
-                
-                if (userr.Password == user.Password)
-                {
-
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Bu Password invalid. Boshqa password kiriting ");
-                    Console.ForegroundColor = ConsoleColor.White;
-
-                    goto Start;
-                }
-            }
-
+            
             users.Add(user);
             var serializedUsers = JsonConvert.SerializeObject(users);
             File.WriteAllText(Constants.UserDbPath, serializedUsers);
@@ -80,6 +51,8 @@ namespace University.Repositories
             
             return user;
         }
+
+        
 
         public static IList<User> GetAll()
         {
