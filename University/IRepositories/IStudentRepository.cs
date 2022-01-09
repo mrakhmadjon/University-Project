@@ -10,15 +10,15 @@ namespace University.IRepositories
     internal interface IStudentRepository
     {
       Student CreateStudent(Student student);
-      bool DeleteStudent();
+      void DeleteStudent(string phonenum);
       
-      bool UpdateStudent();
+      void UpdateStudent(string phoneNum);
       
-      int GetCountOfStudents();
+      void GetCountOfStudents();
         
-      bool GetAllStudentsList();
+      void GetAllStudentsList();
          
-      bool OptimalSearch();
+      void OptimalSearch();
         
     }
 }

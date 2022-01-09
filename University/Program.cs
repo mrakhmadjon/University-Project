@@ -12,9 +12,7 @@ namespace University
        
         static void Main(string[] args)
         {
-            
-       
-            MainEntryMenu.RoleMenu();
+           MainEntryMenu.RoleMenu();
             
        // Student_menu:
         

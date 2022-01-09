@@ -50,72 +50,98 @@ namespace University.Repositories
          
 
 
-        public bool DeleteStudent()
+        public void DeleteStudent(string phoneNum)
         {
             
             var students = GetAllstudents();
-            Console.WriteLine("PhoneNumber : ");
-            string phonenum = Console.ReadLine().Trim();
-
-                      
-             
+            bool isStudentDeleted = false;
             foreach (Student student in students)
             {
-                if (student.PhoneNum == phonenum)
+                if (student.PhoneNum == phoneNum)
                 { students.Remove(student); 
                     WriteAllStudents(students);
-                    return  true;
+                    isStudentDeleted = true;
                 }
             }
-             
-            return false;
+
+            if (isStudentDeleted)
+            {
+                Console.Clear();
+                Console.WriteLine("\t\tStudent Bazadan o'chirildi...");
+                StudentMenu.StudentEntryMenu();
+            }
+            else
+            {
+                Console.Clear();
+
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine("Bazada bunday student yo'q");
+                Console.ForegroundColor = ConsoleColor.White;
+                StudentMenu.StudentEntryMenu();
+
+            }
         }
 
 
 
-        public bool UpdateStudent()
+        public void UpdateStudent(string phoneNum)
         {
-            Console.Clear();
-            Console.WriteLine("\tTasdiqlash uchun Telefon nomeringizni va Emailingizni Kiriting \n");
-            Console.WriteLine("PhoneNum : ");
-            string phone = Console.ReadLine().Trim();
-
             
+            bool isStudentUpdated = false;
             var existStudents = GetAllstudents();
             foreach (Student student in existStudents)
             {
-                if (student.PhoneNum.Equals(phone))
+                if (student.PhoneNum.Equals(phoneNum))
                 {
-                    
                     existStudents.Remove(student);
                     
                     WriteAllStudents(existStudents);
                     CreateStudent(GetInfoFromUser.GetInfoOfStudent());
-
-                    return true;
+                    isStudentUpdated = true;
                 }
             }
-            return false;
+            if (!isStudentUpdated)
+            {
+                Console.Clear();
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Bazada bunday student yo'q");
+                Console.ForegroundColor = ConsoleColor.White;
+                StudentMenu.StudentEntryMenu();
+            }
         }
 
         /// <summary>
         /// This returns the count of the students 
         /// </summary>
         /// <returns></returns>
-        public int GetCountOfStudents()
+        public void GetCountOfStudents()
         {
-            GetAllstudents();
-            return GetAllstudents().Count();
+            IList<Student> allStudents = GetAllstudents();
+            if (allStudents.Count > 0)
+            {
+                Console.Clear();
+
+                Console.WriteLine("\t\tBazada {0} ta o'quvchi bor\n", GetAllstudents().Count());
+                StudentMenu.StudentEntryMenu();
+
+            }
+            else
+            {
+                Console.Clear();
+
+                Console.WriteLine("\t\tBazada birorta ham o'quvchi yo'q\n");
+                StudentMenu.StudentEntryMenu();
+            }
         }
         
-        public bool GetAllStudentsList()
+        public void GetAllStudentsList()
         {
-            var allStudents = GetAllstudents();
-
-            IEnumerable sortedStudents = allStudents.OrderBy(student => student.FirstName).ThenBy(x => x.PhoneNum);
-
-            if (sortedStudents.ToString().Length != 0)
+            IList<Student> allStudents = GetAllstudents();
+            if (allStudents.Count > 0)
             {
+                IEnumerable sortedStudents = allStudents.OrderBy(student => student.FirstName).ThenBy(x => x.PhoneNum);
+
                 Console.Clear();
                 Console.WriteLine("\tBazadagi o'quvchilar \n");
                 foreach (Student student in sortedStudents)
@@ -125,36 +151,59 @@ namespace University.Repositories
 
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                return true;
+                Console.WriteLine();
+                StudentMenu.StudentEntryMenu();
+
             }
-            return false ;
+            else
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\t\tBazada O'quvchilar malumotlari mavjud emas");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine();
+                StudentMenu.StudentEntryMenu();
+
+            }
         }
 
          
 
-        public bool OptimalSearch()
+        public void OptimalSearch()
         {
             Console.WriteLine("Qidirmoqchi bo'lgan student parametrini kiriting : ");
             string optimalSearch = Console.ReadLine().Trim();
             var searchStudents = GetAllstudents();
 
-            IList<Student> seachedStudents = searchStudents.Where(student => student.Email.Equals(searchStudents) || student.FirstName.Equals(optimalSearch)
-            || student.LastName.Contains(optimalSearch) || student.Age.ToString().Equals(optimalSearch) || student.PhoneNum.Equals(optimalSearch)
-            || student.Course.ToString().Equals(optimalSearch)).ToList();
+            IList<Student> seachedStudents = searchStudents.Where(student =>  student.FirstName.Contains(optimalSearch) || student.FirstName.Contains(optimalSearch.Cap()) || student.LastName.Contains(optimalSearch) || student.LastName.Contains(optimalSearch.Cap())).ToList() ;
+            
 
             if (seachedStudents.ToList().Count != 0)
             {
                 Console.Clear();
                 foreach (Student student in seachedStudents)
                 {
+
+                    Console.WriteLine("\t\tSiz kiritgan Parameter boyicha o'quvchi yoki o'quvchilar ro'yxati\n");
+
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"\n Id : {student.Id} FirstName : {student.FirstName} LastName : {student.LastName} Age : {student.Age} Email : {student.Email} PhoneNumber : {student.PhoneNum}");
-
                     Console.ForegroundColor = ConsoleColor.White;
+                    StudentMenu.StudentEntryMenu();
+
                 }
-                return true;
+                Console.WriteLine();
             }
-            return false;
+            else
+            {
+                Console.Clear();
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\t\tSiz kiritgan Parameter boyicha o'quvchi yo'q\n\n");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                StudentMenu.StudentEntryMenu();
+            }
         }
 
 

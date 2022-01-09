@@ -1,5 +1,5 @@
 [
-  
+
   {
     "Id": "297521820",
     "FirstName": "Ali",
@@ -17,5 +17,14 @@
     "Course": 3,
     "PhoneNum": "+998972507282",
     "Email": "a@gmail.com"
+  },
+  {
+    "Id": "478109163",
+    "FirstName": "Sher",
+    "LastName": "Sher",
+    "Age": 23,
+    "Course": 3,
+    "PhoneNum": "12345",
+    "Email": "sher@gmail.com"
   }
 ]

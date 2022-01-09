@@ -18,7 +18,7 @@ namespace University.Menus
             Console.WriteLine("2: O'quvchini bazadan o'chirish");
             Console.WriteLine("3: O'quvchini yangilash");
             Console.WriteLine("4: Barcha O'quvchilarni sonini ko'rish");
-            Console.WriteLine("5: Barcha O'quvchilarni");
+            Console.WriteLine("5: Barcha O'quvchilar");
             Console.WriteLine("6: Universal Search");
             Console.WriteLine("7: Dasturdan Chiqish");
 
@@ -37,7 +37,39 @@ namespace University.Menus
             {
                 studentRepository.CreateStudent(GetInfoFromUser.GetInfoOfStudent());
             }
-            
+            else if (option.KeyChar == '2')
+            {
+                Console.Clear();
+                Console.Write("PhoneNumber : \n>>> ");
+                studentRepository.DeleteStudent(Console.ReadLine().Trim());
+            }
+            else if (option.KeyChar == '3')
+            {
+                Console.Clear();
+                Console.Write("PhoneNumber : \n>>> ");
+                studentRepository.UpdateStudent(Console.ReadLine().Trim());
+            }
+            else if (option.KeyChar == '4')
+            {
+                Console.Clear();
+                
+                studentRepository.GetCountOfStudents();
+            }
+            else if (option.KeyChar == '5')
+            {
+                Console.Clear();
+                studentRepository.GetAllStudentsList();
+            }
+            else if (option.KeyChar == '6')
+            {
+                Console.Clear();
+                studentRepository.OptimalSearch();
+            }
+            else 
+            {
+                Console.Clear();
+                
+            }
         }
     }
 }
